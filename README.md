@@ -14,6 +14,8 @@ PSEUDO CODE
     a div that will hold the score. 
     a div that will allow the user to eneter their initials 
 
+    create the questios on a seperate js file 
+
 2. JS 
 give our "Start" button functionality so that it can start our game
     the start button has to do two things: 
