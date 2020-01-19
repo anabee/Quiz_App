@@ -22,4 +22,13 @@ give our "Start" button functionality so that it can start our game
     - it has to start the timer 
     - has to start the displaying of questions 
 
+figure out ho to display the questions from the array 
+    -link the appropriate question to the question div - append? textContent?
+    -link the buttons to the available answers 
 
+write a function that will alert the user whether they chose the right answer 
+    -make the buttons functional so that the user can click and choose their answer 
+    -alert the user on whether they are right or wrong 
+
+    -if they chose the right answer then we have to save that point somehow 
+    -if they chose the wrong answer we need to deduct time from the clock (15 secs)
