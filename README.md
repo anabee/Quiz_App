@@ -16,4 +16,8 @@ PSEUDO CODE
 
 2. JS 
 give our "Start" button functionality so that it can start our game
+    the start button has to do two things: 
+    - it has to start the timer 
+    - has to start the displaying of questions 
 
+    
