@@ -20,4 +20,4 @@ give our "Start" button functionality so that it can start our game
     - it has to start the timer 
     - has to start the displaying of questions 
 
-    
+
