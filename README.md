@@ -30,5 +30,11 @@ write a function that will alert the user whether they chose the right answer
     -make the buttons functional so that the user can click and choose their answer 
     -alert the user on whether they are right or wrong 
 
-    -if they chose the right answer then we have to save that point somehow 
-    -if they chose the wrong answer we need to deduct time from the clock (15 secs)
+    !!! -if they chose the right answer then we have to save that point somehow 
+    !!!-if they chose the wrong answer we need to deduct time from the clock (15 secs)
+
+make it so that when an answer is chosen, the screen shows the next question and answer
+
+    !!! - figure out how to clear the wrong/ right field once an question is answered 
+
+once the user completes the quiz, take user to the page that shows their score 

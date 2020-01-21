@@ -13,14 +13,20 @@ var answerOne = document.querySelector(".buttonOne");
 var answerTwo = document.querySelector(".buttonTwo");
 var answerThree = document.querySelector(".buttonThree");
 var answerFour = document.querySelector(".buttonFour");
+// display for where the answer will go if the user was wrong or right 
+var resultArea = document.querySelector(".result-box");
+// this is the page that will allow users to add their initials to the score 
+var userResults = document.querySelector(".user-scores");
+// this is for the button that saves the users initials 
+var saveInitials = document.querySelector(".addintScoreBtn");
 // sets the amount allotted 
-var secondsLeft = 60;
+var secondsLeft = 75;
 
 
 startButton.addEventListener("click", function(){
     startTimer();
     startQuestions();
-    showQuestionsAns();
+    showQuestionsAns1();
 });
 
 function startTimer () {
@@ -41,14 +47,171 @@ function startQuestions(){
     // console.log("Im working!")
 };
 
-function showQuestionsAns(){
+// QUESTION 1 
+
+function showQuestionsAns1(){
     questionField.textContent = questions[0].title;
     answerOne.textContent = questions[0].choices[0];
     answerTwo.textContent = questions[0].choices[1];
     answerThree.textContent = questions[0].choices[2];
     answerFour.textContent = questions[0].choices[3];
+
+answerOne.addEventListener("click", function(){
+    resultArea.classList.remove('hide');
+    resultArea.textContent = "Wrong!";
+    showQuestionsAns2();
+});
+answerTwo.addEventListener("click", function(){
+    resultArea.classList.remove('hide');
+    resultArea.textContent = "Wrong!";
+    showQuestionsAns2();
+});
+answerThree.addEventListener("click", function(){
+    resultArea.classList.remove('hide');
+    resultArea.textContent = "Right!";
+    showQuestionsAns2();
+});
+answerFour.addEventListener("click", function(){
+    resultArea.classList.remove('hide');
+    resultArea.textContent = "Wrong!";
+    showQuestionsAns2();
+});
 };
 
-function recordingAnswers (){
-    
-}
+// QUESTION 2 
+
+function showQuestionsAns2(){
+    // resultArea.classList.add('hide');
+    questionField.textContent = questions[1].title;
+    answerOne.textContent = questions[1].choices[0];
+    answerTwo.textContent = questions[1].choices[1];
+    answerThree.textContent = questions[1].choices[2];
+    answerFour.textContent = questions[1].choices[3];
+
+answerOne.addEventListener("click", function(){
+    resultArea.textContent = "Wrong!"
+    resultArea.classList.remove('hide');
+    showQuestionsAns3();
+});
+answerTwo.addEventListener("click", function(){
+    resultArea.textContent = "Wrong!"
+    resultArea.classList.remove('hide');
+    showQuestionsAns3();
+});
+answerThree.addEventListener("click", function(){
+    resultArea.textContent = "Right!"
+    resultArea.classList.remove('hide');
+    showQuestionsAns3();
+});
+answerFour.addEventListener("click", function(){
+    resultArea.textContent = "Wrong!"
+    resultArea.classList.remove('hide');
+    showQuestionsAns3();
+});
+};
+
+// QUESTION 3 
+
+function showQuestionsAns3(){
+    // resultArea.classList.add('hide');
+    questionField.textContent = questions[2].title;
+    answerOne.textContent = questions[2].choices[0];
+    answerTwo.textContent = questions[2].choices[1];
+    answerThree.textContent = questions[2].choices[2];
+    answerFour.textContent = questions[2].choices[3];
+
+answerOne.addEventListener("click", function(){
+    resultArea.textContent = "Wrong!"
+    resultArea.classList.remove('hide');
+    showQuestionsAns4();
+});
+answerTwo.addEventListener("click", function(){
+    resultArea.textContent = "Wrong!"
+    resultArea.classList.remove('hide');
+    showQuestionsAns4();
+});
+answerThree.addEventListener("click", function(){
+    resultArea.textContent = "Wrong!"
+    resultArea.classList.remove('hide');
+    showQuestionsAns4();
+});
+answerFour.addEventListener("click", function(){
+    resultArea.textContent = "Right!"
+    resultArea.classList.remove('hide');
+    showQuestionsAns4();
+});
+};
+
+// QUESTION 4 
+
+function showQuestionsAns4(){
+    // resultArea.classList.add('hide');
+    questionField.textContent = questions[3].title;
+    answerOne.textContent = questions[3].choices[0];
+    answerTwo.textContent = questions[3].choices[1];
+    answerThree.textContent = questions[3].choices[2];
+    answerFour.textContent = questions[3].choices[3];
+
+answerOne.addEventListener("click", function(){
+    resultArea.textContent = "Wrong!"
+    resultArea.classList.remove('hide');
+    showQuestionsAns5();
+});
+answerTwo.addEventListener("click", function(){
+    resultArea.textContent = "Wrong!"
+    resultArea.classList.remove('hide');
+    showQuestionsAns5();
+});
+answerThree.addEventListener("click", function(){
+    resultArea.textContent = "Right!"
+    resultArea.classList.remove('hide');
+    showQuestionsAns5();
+});
+answerFour.addEventListener("click", function(){
+    resultArea.textContent = "Wrong!"
+    resultArea.classList.remove('hide');
+    showQuestionsAns5();
+});
+};
+
+// QUESTION 5 
+
+function showQuestionsAns5(){
+    // resultArea.classList.add('hide');
+    questionField.textContent = questions[4].title;
+    answerOne.textContent = questions[4].choices[0];
+    answerTwo.textContent = questions[4].choices[1];
+    answerThree.textContent = questions[4].choices[2];
+    answerFour.textContent = questions[4].choices[3];
+
+answerOne.addEventListener("click", function(){
+    resultArea.textContent = "Right!"
+    resultArea.classList.remove('hide');
+    yourScorePage();
+});
+answerTwo.addEventListener("click", function(){
+    resultArea.textContent = "Wrong!"
+    resultArea.classList.remove('hide');
+    yourScorePage();
+});
+answerThree.addEventListener("click", function(){
+    resultArea.textContent = "Wrong!"
+    resultArea.classList.remove('hide');
+    yourScorePage();
+});
+answerFour.addEventListener("click", function(){
+    resultArea.textContent = "Wrong!"
+    resultArea.classList.remove('hide');
+    yourScorePage();
+});
+};
+
+function yourScorePage () {
+    userResults.classList.remove('hide');
+    questionsPage.classList.add('hide');
+};
+
+
+function highScores (){
+
+};
