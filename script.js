@@ -18,7 +18,11 @@ var resultArea = document.querySelector(".result-box");
 // this is the page that will allow users to add their initials to the score 
 var userResults = document.querySelector(".user-scores");
 // this is for the button that saves the users initials 
-var saveInitials = document.querySelector(".addintScoreBtn");
+var saveInitials = document.querySelector(".addingScoreBtn");
+// high scores page 
+var highScoresPage = document.querySelector(".high-scores");
+// button that allows user to restart the game 
+var restart = document.querySelector(".restartBtn");
 // sets the amount allotted 
 var secondsLeft = 75;
 
@@ -59,6 +63,7 @@ function showQuestionsAns1(){
 answerOne.addEventListener("click", function(){
     resultArea.classList.remove('hide');
     resultArea.textContent = "Wrong!";
+    secondsLeft - 15;
     showQuestionsAns2();
 });
 answerTwo.addEventListener("click", function(){
@@ -211,7 +216,12 @@ function yourScorePage () {
     questionsPage.classList.add('hide');
 };
 
+saveInitials.addEventListener("click", function(){
+    userResults.classList.add('hide');
+    highScoresPage.classList.remove('hide');
+});
 
-function highScores (){
-
-};
+restart.addEventListener("click", function(){
+    highScoresPage.classList.add('hide');
+    startingPage.classList.remove('hide');
+});
