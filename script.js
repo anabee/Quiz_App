@@ -23,27 +23,57 @@ var saveInitials = document.querySelector(".addingScoreBtn");
 var highScoresPage = document.querySelector(".high-scores");
 // button that allows user to restart the game 
 var restart = document.querySelector(".restartBtn");
-// sets the amount allotted 
-var secondsLeft = 75;
 
 
 startButton.addEventListener("click", function(){
-    startTimer();
+    startCount();
+    // startTimer();
     startQuestions();
     showQuestionsAns1();
 });
 
-function startTimer () {
-    var timerInterval = setInterval(function(){
-        secondsLeft--;
-        timerLocation.textContent = "Time Remaining:" + secondsLeft;
+// function startTimer () {
+//     var timerInterval = setInterval(function(){
+//         secondsLeft--;
+//         timerLocation.textContent = "Time Remaining:" + secondsLeft;
 
-        if (secondsLeft === 0) {
-            clearInterval(timerInterval);
-            console.log("Game Over");
-        }
-    }, 1000);
+
+//         if (secondsLeft === 0) {
+//             clearInterval(timerInterval);
+//             yourScorePage();
+//             console.log("Game Over");
+//         }
+//     }, 1000);
+// };
+
+// TIMER FUNCTIONS 
+
+var secondsLeft = 75;
+var time;
+var timer_is_on = 0;
+
+function timedCount() {
+  document.getElementById("txt").textContent = "Time Remaining: " + secondsLeft;
+  secondsLeft = secondsLeft - 1;
+  t = setTimeout(timedCount, 1000);
 };
+
+function startCount() {
+  if (!timer_is_on) {
+    timer_is_on = 1;
+    timedCount();
+  }
+};
+
+function deductTime() {
+  clearTimeout(t);
+  timer_is_on = 0
+  secondsLeft = secondsLeft -15;
+  console.log(secondsLeft);
+};
+
+
+// QUESTION FUNCTIONS 
 
 function startQuestions(){
     startingPage.classList.add('hide')
@@ -63,7 +93,7 @@ function showQuestionsAns1(){
 answerOne.addEventListener("click", function(){
     resultArea.classList.remove('hide');
     resultArea.textContent = "Wrong!";
-    secondsLeft - 15;
+    deductTime();
     showQuestionsAns2();
 });
 answerTwo.addEventListener("click", function(){
@@ -87,6 +117,7 @@ answerFour.addEventListener("click", function(){
 
 function showQuestionsAns2(){
     // resultArea.classList.add('hide');
+    startCount();
     questionField.textContent = questions[1].title;
     answerOne.textContent = questions[1].choices[0];
     answerTwo.textContent = questions[1].choices[1];
