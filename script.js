@@ -14,7 +14,7 @@ var answerTwo = document.querySelector(".buttonTwo");
 var answerThree = document.querySelector(".buttonThree");
 var answerFour = document.querySelector(".buttonFour");
 // display for where the answer will go if the user was wrong or right 
-var resultArea = document.querySelector(".result-box");
+var resultAreaW = document.querySelector(".wrong-display");
 // this is the page that will allow users to add their initials to the score 
 var userResults = document.querySelector(".user-scores");
 // this is for the button that saves the users initials 
@@ -23,59 +23,42 @@ var saveInitials = document.querySelector(".addingScoreBtn");
 var highScoresPage = document.querySelector(".high-scores");
 // button that allows user to restart the game 
 var restart = document.querySelector(".restartBtn");
+// button to clear local storage 
+var clearBoard = document.querySelector(".clearAll")
+
+var userNameSpan = document.querySelector(".winner-info");
 
 
-startButton.addEventListener("click", function(){
-    startCount();
+startButton.addEventListener("click", function () {
+    // start();
+    // startCount();
     // startTimer();
     startQuestions();
     showQuestionsAns1();
 });
 
-// function startTimer () {
-//     var timerInterval = setInterval(function(){
-//         secondsLeft--;
-//         timerLocation.textContent = "Time Remaining:" + secondsLeft;
+// var secondsLeft
 
+// function start() {
+//     secondsLeft = 3
 
-//         if (secondsLeft === 0) {
-//             clearInterval(timerInterval);
-//             yourScorePage();
-//             console.log("Game Over");
-//         }
-//     }, 1000);
+//     setInterval(function () {getSecondsLeft(secondsLeft)}, 1000)
+
+//     function getSecondsLeft(seconds) {
+//         timerLocation.textContent = "Time Remaining: " + secondsLeft;
+//         secondsLeft = seconds-1
+
+//         if(secondsLeft === 0){console.log('End Game')}
+
+//         return secondsLeft  
+//     }
 // };
 
-// TIMER FUNCTIONS 
-
-var secondsLeft = 75;
-var time;
-var timer_is_on = 0;
-
-function timedCount() {
-  document.getElementById("txt").textContent = "Time Remaining: " + secondsLeft;
-  secondsLeft = secondsLeft - 1;
-  t = setTimeout(timedCount, 1000);
-};
-
-function startCount() {
-  if (!timer_is_on) {
-    timer_is_on = 1;
-    timedCount();
-  }
-};
-
-function deductTime() {
-  clearTimeout(t);
-  timer_is_on = 0
-  secondsLeft = secondsLeft -15;
-  console.log(secondsLeft);
-};
 
 
 // QUESTION FUNCTIONS 
 
-function startQuestions(){
+function startQuestions() {
     startingPage.classList.add('hide')
     questionsPage.classList.remove('hide')
     // console.log("Im working!")
@@ -83,176 +66,374 @@ function startQuestions(){
 
 // QUESTION 1 
 
-function showQuestionsAns1(){
+var indexOfAns
+var indexOfAns1
+var indexOfAns2
+var indexOfAns3
+var indexOfAns4
+var index
+
+function checkAns(){
+    if (index != indexOfAns){
+        // console.log(index);
+        // console.log(indexOfAns);
+        resultAreaW.classList.remove('hide');
+        resultAreaW.textContent = "Wrong!"
+        console.log("wrong")
+    } else {
+        resultAreaW.classList.remove('hide');
+        resultAreaW.textContent = "Right!"
+        console.log("right")
+    };
+ };
+
+function showQuestionsAns1() {
     questionField.textContent = questions[0].title;
     answerOne.textContent = questions[0].choices[0];
     answerTwo.textContent = questions[0].choices[1];
     answerThree.textContent = questions[0].choices[2];
     answerFour.textContent = questions[0].choices[3];
 
-answerOne.addEventListener("click", function(){
-    resultArea.classList.remove('hide');
-    resultArea.textContent = "Wrong!";
-    deductTime();
-    showQuestionsAns2();
-});
-answerTwo.addEventListener("click", function(){
-    resultArea.classList.remove('hide');
-    resultArea.textContent = "Wrong!";
-    showQuestionsAns2();
-});
-answerThree.addEventListener("click", function(){
-    resultArea.classList.remove('hide');
-    resultArea.textContent = "Right!";
-    showQuestionsAns2();
-});
-answerFour.addEventListener("click", function(){
-    resultArea.classList.remove('hide');
-    resultArea.textContent = "Wrong!";
-    showQuestionsAns2();
-});
-};
+    function correctOne(questions){
+        let numberOne = questions[0];
+
+        index = numberOne.choices.indexOf(numberOne.answer);
+
+        console.log(index);
+    };
+    
+
+         answerOne.addEventListener("click", function(){
+            correctOne(questions);
+            indexOfAns = questions[0].choices.indexOf(questions[0].choices[0]);
+            console.log(indexOfAns);
+            checkAns();
+            showQuestionsAns2();
+        });
+    
+        answerTwo.addEventListener("click", function(){
+            correctOne(questions);
+            indexOfAns = questions[0].choices.indexOf(questions[0].choices[1]);
+            console.log(indexOfAns);
+            checkAns();
+            showQuestionsAns2();
+        });
+
+        answerThree.addEventListener("click", function(){
+            correctOne(questions);
+            indexOfAns = questions[0].choices.indexOf(questions[0].choices[2]);
+            console.log(indexOfAns);
+            checkAns();
+            showQuestionsAns2();
+        });
+
+        answerFour.addEventListener("click", function(){
+            correctOne(questions);
+            indexOfAns = questions[0].choices.indexOf(questions[0].choices[3]);
+            console.log(indexOfAns);
+            checkAns();
+            showQuestionsAns2();
+        });
+    };
+      
 
 // QUESTION 2 
 
-function showQuestionsAns2(){
-    // resultArea.classList.add('hide');
-    startCount();
+function showQuestionsAns2() {
+    // resultAreaW.classList.add('hide');
     questionField.textContent = questions[1].title;
     answerOne.textContent = questions[1].choices[0];
     answerTwo.textContent = questions[1].choices[1];
     answerThree.textContent = questions[1].choices[2];
     answerFour.textContent = questions[1].choices[3];
 
-answerOne.addEventListener("click", function(){
-    resultArea.textContent = "Wrong!"
-    resultArea.classList.remove('hide');
-    showQuestionsAns3();
-});
-answerTwo.addEventListener("click", function(){
-    resultArea.textContent = "Wrong!"
-    resultArea.classList.remove('hide');
-    showQuestionsAns3();
-});
-answerThree.addEventListener("click", function(){
-    resultArea.textContent = "Right!"
-    resultArea.classList.remove('hide');
-    showQuestionsAns3();
-});
-answerFour.addEventListener("click", function(){
-    resultArea.textContent = "Wrong!"
-    resultArea.classList.remove('hide');
-    showQuestionsAns3();
-});
+    function checkAns1(){
+        if (index != indexOfAns1){
+            // console.log(index);
+            // console.log(indexOfAns);
+            resultAreaW.classList.remove('hide');
+            resultAreaW.textContent = "Wrong!"
+            console.log("wrong")
+        } else {
+            resultAreaW.classList.remove('hide');
+            resultAreaW.textContent = "Right!"
+            console.log("right")
+        };
+     };
+    
+    function correctTwo(questions){
+        let numberTwo = questions[1];
+    
+        index = numberTwo.choices.indexOf(numberTwo.answer);
+    
+        console.log(index);
+    };
+    
+    answerOne.addEventListener("click", function(){
+        correctTwo(questions);
+        indexOfAns1 = questions[1].choices.indexOf(questions[1].choices[0]);
+        console.log(indexOfAns1);
+        checkAns1();
+        showQuestionsAns3();
+    });
+    
+    answerTwo.addEventListener("click", function(){
+        correctTwo(questions);
+        indexOfAns1 = questions[1].choices.indexOf(questions[1].choices[1]);
+        console.log(indexOfAns1);
+        checkAns1();
+        showQuestionsAns3();
+    });
+    
+    answerThree.addEventListener("click", function(){
+        correctTwo(questions);
+        indexOfAns1 = questions[1].choices.indexOf(questions[1].choices[2]);
+        console.log(indexOfAns1);
+        checkAns1();
+        showQuestionsAns3();
+    });
+    
+    answerFour.addEventListener("click", function(){
+        correctTwo(questions);
+        indexOfAns1 = questions[1].choices.indexOf(questions[1].choices[3]);
+        console.log(indexOfAns1);
+        checkAns1();
+        showQuestionsAns3();
+    });
 };
 
-// QUESTION 3 
 
-function showQuestionsAns3(){
-    // resultArea.classList.add('hide');
+// // QUESTION 3 
+
+function showQuestionsAns3() {
+    // resultAreaW.classList.add('hide');
+    // resultAreaR.classList.add('hide');
     questionField.textContent = questions[2].title;
     answerOne.textContent = questions[2].choices[0];
     answerTwo.textContent = questions[2].choices[1];
     answerThree.textContent = questions[2].choices[2];
     answerFour.textContent = questions[2].choices[3];
 
-answerOne.addEventListener("click", function(){
-    resultArea.textContent = "Wrong!"
-    resultArea.classList.remove('hide');
-    showQuestionsAns4();
-});
-answerTwo.addEventListener("click", function(){
-    resultArea.textContent = "Wrong!"
-    resultArea.classList.remove('hide');
-    showQuestionsAns4();
-});
-answerThree.addEventListener("click", function(){
-    resultArea.textContent = "Wrong!"
-    resultArea.classList.remove('hide');
-    showQuestionsAns4();
-});
-answerFour.addEventListener("click", function(){
-    resultArea.textContent = "Right!"
-    resultArea.classList.remove('hide');
-    showQuestionsAns4();
-});
+    function checkAns2(){
+        if (index != indexOfAns2){
+            // console.log(index);
+            // console.log(indexOfAns);
+            resultAreaW.classList.remove('hide');
+            resultAreaW.textContent = "Wrong!"
+            console.log("wrong")
+        } else {
+            resultAreaW.classList.remove('hide');
+            resultAreaW.textContent = "Right!"
+            console.log("right")
+        };
+     };
+    
+    function correctThree(questions){
+        let numberThree = questions[2];
+    
+        index = numberThree.choices.indexOf(numberThree.answer);
+    
+        console.log(index);
+    };
+    
+    answerOne.addEventListener("click", function(){
+        correctThree(questions);
+        indexOfAns2 = questions[2].choices.indexOf(questions[2].choices[0]);
+        console.log(indexOfAns2);
+        checkAns2();
+        showQuestionsAns4();
+    });
+    
+    answerTwo.addEventListener("click", function(){
+        correctThree(questions);
+        indexOfAns2 = questions[2].choices.indexOf(questions[2].choices[1]);
+        console.log(indexOfAns2);
+        checkAns2();
+        showQuestionsAns4();
+    });
+    
+    answerThree.addEventListener("click", function(){
+        correctThree(questions);
+        indexOfAns2 = questions[2].choices.indexOf(questions[2].choices[2]);
+        console.log(indexOfAns2);
+        checkAns2();
+        showQuestionsAns4();
+    });
+    
+    answerFour.addEventListener("click", function(){
+        correctThree(questions);
+        indexOfAns2 = questions[2].choices.indexOf(questions[2].choices[3]);
+        console.log(indexOfAns2);
+        checkAns2();
+        showQuestionsAns4();
+    });
+    
 };
 
-// QUESTION 4 
 
-function showQuestionsAns4(){
-    // resultArea.classList.add('hide');
+// // QUESTION 4 
+
+function showQuestionsAns4() {
+    // resultAreaW.classList.add('hide');
+    // resultAreaR.classList.add('hide');
     questionField.textContent = questions[3].title;
     answerOne.textContent = questions[3].choices[0];
     answerTwo.textContent = questions[3].choices[1];
     answerThree.textContent = questions[3].choices[2];
     answerFour.textContent = questions[3].choices[3];
 
-answerOne.addEventListener("click", function(){
-    resultArea.textContent = "Wrong!"
-    resultArea.classList.remove('hide');
-    showQuestionsAns5();
-});
-answerTwo.addEventListener("click", function(){
-    resultArea.textContent = "Wrong!"
-    resultArea.classList.remove('hide');
-    showQuestionsAns5();
-});
-answerThree.addEventListener("click", function(){
-    resultArea.textContent = "Right!"
-    resultArea.classList.remove('hide');
-    showQuestionsAns5();
-});
-answerFour.addEventListener("click", function(){
-    resultArea.textContent = "Wrong!"
-    resultArea.classList.remove('hide');
-    showQuestionsAns5();
-});
+    function checkAns3(){
+        if (index != indexOfAns3){
+            // console.log(index);
+            // console.log(indexOfAns);
+            resultAreaW.classList.remove('hide');
+            resultAreaW.textContent = "Wrong!"
+            console.log("wrong")
+        } else {
+            resultAreaW.classList.remove('hide');
+            resultAreaW.textContent = "Right!"
+            console.log("right")
+        };
+     };
+    
+    function correctFour(questions){
+        let numberFour = questions[3];
+    
+        index = numberFour.choices.indexOf(numberFour.answer);
+    
+        console.log(index);
+    };
+    
+    answerOne.addEventListener("click", function(){
+        correctFour(questions);
+        indexOfAns3 = questions[3].choices.indexOf(questions[3].choices[0]);
+        console.log(indexOfAns3);
+        checkAns3();
+        showQuestionsAns5();
+    });
+    
+    answerTwo.addEventListener("click", function(){
+        correctFour(questions);
+        indexOfAns3 = questions[3].choices.indexOf(questions[3].choices[1]);
+        console.log(indexOfAns3);
+        checkAns3();
+        showQuestionsAns5();
+    });
+    
+    answerThree.addEventListener("click", function(){
+        correctFour(questions);
+        indexOfAns3 = questions[3].choices.indexOf(questions[3].choices[2]);
+        console.log(indexOfAns3);
+        checkAns3();
+        showQuestionsAns5();
+    });
+    
+    answerFour.addEventListener("click", function(){
+        correctFour(questions);
+        indexOfAns3 = questions[3].choices.indexOf(questions[3].choices[3]);
+        console.log(indexOfAns3);
+        checkAns3();
+        showQuestionsAns5();
+    });
 };
 
-// QUESTION 5 
 
-function showQuestionsAns5(){
-    // resultArea.classList.add('hide');
+// // QUESTION 5 
+
+function showQuestionsAns5() {
+    // resultAreaW.classList.add('hide');
+    // resultAreaR.classList.add('hide');
     questionField.textContent = questions[4].title;
     answerOne.textContent = questions[4].choices[0];
     answerTwo.textContent = questions[4].choices[1];
     answerThree.textContent = questions[4].choices[2];
     answerFour.textContent = questions[4].choices[3];
 
-answerOne.addEventListener("click", function(){
-    resultArea.textContent = "Right!"
-    resultArea.classList.remove('hide');
-    yourScorePage();
-});
-answerTwo.addEventListener("click", function(){
-    resultArea.textContent = "Wrong!"
-    resultArea.classList.remove('hide');
-    yourScorePage();
-});
-answerThree.addEventListener("click", function(){
-    resultArea.textContent = "Wrong!"
-    resultArea.classList.remove('hide');
-    yourScorePage();
-});
-answerFour.addEventListener("click", function(){
-    resultArea.textContent = "Wrong!"
-    resultArea.classList.remove('hide');
-    yourScorePage();
-});
+    function checkAns4(){
+        if (index != indexOfAns4){
+            // console.log(index);
+            // console.log(indexOfAns);
+            resultAreaW.classList.remove('hide');
+            resultAreaW.textContent = "Wrong!"
+            console.log("wrong")
+        } else {
+            resultAreaW.classList.remove('hide');
+            resultAreaW.textContent = "Right!"
+            console.log("right")
+        };
+     };
+    
+    function correctFive(questions){
+        let numberFour = questions[4];
+    
+        index = numberFour.choices.indexOf(numberFour.answer);
+    
+        console.log(index);
+    };
+    
+    answerOne.addEventListener("click", function(){
+        correctFive(questions);
+        indexOfAns4 = questions[4].choices.indexOf(questions[4].choices[0]);
+        console.log(indexOfAns4);
+        checkAns4();
+        yourScorePage();
+    });
+    
+    answerTwo.addEventListener("click", function(){
+        correctFive(questions);
+        indexOfAns4 = questions[4].choices.indexOf(questions[4].choices[1]);
+        console.log(indexOfAns4);
+        checkAns4();
+        yourScorePage();
+    });
+    
+    answerThree.addEventListener("click", function(){
+        correctFive(questions);
+        indexOfAns4 = questions[4].choices.indexOf(questions[4].choices[2]);
+        console.log(indexOfAns4);
+        checkAns4();
+        yourScorePage();
+    });
+    
+    answerFour.addEventListener("click", function(){
+        correctFive(questions);
+        indexOfAns4 = questions[4].choices.indexOf(questions[4].choices[3]);
+        console.log(indexOfAns4);
+        checkAns4();
+        yourScorePage();
+    });
 };
 
-function yourScorePage () {
+function yourScorePage() {
     userResults.classList.remove('hide');
     questionsPage.classList.add('hide');
 };
 
-saveInitials.addEventListener("click", function(){
+
+
+saveInitials.addEventListener("click", function (event) {
+    event.preventDefault();
+    var userName = document.querySelector("#name-win").value;
+    
+    localStorage.setItem('winner', userName);
+
     userResults.classList.add('hide');
     highScoresPage.classList.remove('hide');
+    scoreBoard();
 });
 
-restart.addEventListener("click", function(){
+function scoreBoard (){
+    console.log(localStorage.getItem('winner'))
+    userNameSpan.textContent = localStorage.getItem('winner');
+};
+
+
+restart.addEventListener("click", function () {
     highScoresPage.classList.add('hide');
     startingPage.classList.remove('hide');
+});
+
+clearBoard.addEventListener("click", function(){
+    localStorage.clear();
+    userNameSpan.classList.add('hide');
 });

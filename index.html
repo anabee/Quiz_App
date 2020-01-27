@@ -44,21 +44,22 @@
             <div class="col-md-12">
                 <ul>
                     <li>
-                        <button type="button" class="btn btn-info buttonOne">a.</button>
+                        <button type="button" class="btn btn-info buttonOne" value="0">a.</button>
                     </li>
                     <li>
-                        <button type="button" class="btn btn-info buttonTwo">b.</button>
+                        <button type="button" class="btn btn-info buttonTwo" value="1">b.</button>
                     </li>
                     <li>
-                        <button type="button" class="btn btn-info buttonThree">c.</button>
+                        <button type="button" class="btn btn-info buttonThree" value="2">c.</button>
                     </li>
                     <li>
-                        <button type="button" class="btn btn-info buttonFour">d.</button>
+                        <button type="button" class="btn btn-info buttonFour" value="3">d.</button>
                     </li>
                 </ul>
             </div>
-            <div class="col-md-12 hide result-box">
-                <div>Wrong/Right</div>
+            <div class="col-md-12">
+                <div class="wrong-display hide"></div>
+                <!-- <div class="right-display hide">Right!</div> -->
             </div>
         </div>
 
@@ -71,7 +72,7 @@
             </div>
             <div class="col-md-12">
                 <label>Enter your Intials:</label>
-                <input type="text">
+                <input type="text" id="name-win">
                 <button type="button" class="btn btn-info addingScoreBtn">Submit</button>
             </div>
         </div>
@@ -81,17 +82,19 @@
                 High Scores: 
             </div>
             <div class="col-md-12">
-                List of people and scored
+                <h2>Top Players:</h2>
+                <div class="winner-info"></div>
             </div>
             <div class="col-md-12">
                 <button type="button" class="btn btn-info restartBtn">Go Back</button>
-                <button type="button" class="btn btn-info clearBtn">Clearn High Scores</button>
+                <button type="button" class="btn btn-info clearBtn clearAll">Clearn High Scores</button>
             </div>
         </div>
 
     </div>
     <script src="./questions.js"></script>
     <script src="./script.js"></script>
+    <!-- <script src="./quiz.js"></script> -->
     
 </body>
 </html>
