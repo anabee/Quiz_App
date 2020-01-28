@@ -1,6 +1,12 @@
 # Quiz_App
 Quiz application 
 
+For this quiz, I initally tried to filter through questions in order to get the quiz going. Unfortunately after seeing that the button clicks would run multiple functions I decided to just make new buttons for every question. This allowed me to go theough and make sure that each button only started one function. 
+
+In order to deduct points from the timer, I made a variable which I could use through out my JS file. When I tested the answer for a question, I would decut points if the answer was wrong. 
+
+The page then takes you to a page where you can enter your initials and then save them to a scoreboard. 
+
 
 PSEUDO CODE 
 1. create basic html that will create all of the elements we need 

@@ -24,35 +24,41 @@ var highScoresPage = document.querySelector(".high-scores");
 // button that allows user to restart the game 
 var restart = document.querySelector(".restartBtn");
 // button to clear local storage 
-var clearBoard = document.querySelector(".clearAll")
+var clearBoard = document.querySelector(".clearAll");
+
+var yourFinalScore = document.querySelector(".final-score");
 
 var userNameSpan = document.querySelector(".winner-info");
 
 
 startButton.addEventListener("click", function () {
-    // start();
-    // startCount();
-    // startTimer();
+    startTimer();
     startQuestions();
     showQuestionsAns1();
 });
 
-// var secondsLeft
 
-// function start() {
-//     secondsLeft = 3
+var secondsLeft 
+var timerInterval
+var saveTimeEnd 
 
-//     setInterval(function () {getSecondsLeft(secondsLeft)}, 1000)
 
-//     function getSecondsLeft(seconds) {
-//         timerLocation.textContent = "Time Remaining: " + secondsLeft;
-//         secondsLeft = seconds-1
-
-//         if(secondsLeft === 0){console.log('End Game')}
-
-//         return secondsLeft  
-//     }
-// };
+function startTimer() {
+    secondsLeft = 75 
+    timerInterval = setInterval(function () {
+        secondsLeft--;
+        timerLocation.textContent = secondsLeft;
+        saveTimeEnd = secondsLeft;
+        yourFinalScore.textContent = saveTimeEnd;
+            
+        if (secondsLeft <= 0) {
+            clearInterval(timerInterval);
+            yourScorePage();
+            timerLocation.textContent = 0;
+            console.log("Game Over");
+        }
+    }, 1000);
+};
 
 
 
@@ -79,6 +85,7 @@ function checkAns(){
         // console.log(indexOfAns);
         resultAreaW.classList.remove('hide');
         resultAreaW.textContent = "Wrong!"
+        secondsLeft = secondsLeft -15
         console.log("wrong")
     } else {
         resultAreaW.classList.remove('hide');
@@ -89,10 +96,6 @@ function checkAns(){
 
 function showQuestionsAns1() {
     questionField.textContent = questions[0].title;
-    answerOne.textContent = questions[0].choices[0];
-    answerTwo.textContent = questions[0].choices[1];
-    answerThree.textContent = questions[0].choices[2];
-    answerFour.textContent = questions[0].choices[3];
 
     function correctOne(questions){
         let numberOne = questions[0];
@@ -101,17 +104,32 @@ function showQuestionsAns1() {
 
         console.log(index);
     };
-    
 
-         answerOne.addEventListener("click", function(){
+    var button1 = document.createElement("button");
+        button1.textContent = questions[0].choices[0];
+    var button2 = document.createElement("button");
+        button2.textContent = questions[0].choices[1];
+    var button3 = document.createElement("button");
+        button3.textContent = questions[0].choices[2];
+    var button4 = document.createElement("button");
+        button4.textContent = questions[0].choices[3];
+
+    questionField.append(button1);
+    questionField.append(button2);
+    questionField.append(button3);
+    questionField.append(button4);
+
+    
+         button1.addEventListener("click", function(){
             correctOne(questions);
             indexOfAns = questions[0].choices.indexOf(questions[0].choices[0]);
             console.log(indexOfAns);
             checkAns();
             showQuestionsAns2();
         });
+
     
-        answerTwo.addEventListener("click", function(){
+        button2.addEventListener("click", function(){
             correctOne(questions);
             indexOfAns = questions[0].choices.indexOf(questions[0].choices[1]);
             console.log(indexOfAns);
@@ -119,7 +137,7 @@ function showQuestionsAns1() {
             showQuestionsAns2();
         });
 
-        answerThree.addEventListener("click", function(){
+        button3.addEventListener("click", function(){
             correctOne(questions);
             indexOfAns = questions[0].choices.indexOf(questions[0].choices[2]);
             console.log(indexOfAns);
@@ -127,7 +145,7 @@ function showQuestionsAns1() {
             showQuestionsAns2();
         });
 
-        answerFour.addEventListener("click", function(){
+        button4.addEventListener("click", function(){
             correctOne(questions);
             indexOfAns = questions[0].choices.indexOf(questions[0].choices[3]);
             console.log(indexOfAns);
@@ -140,19 +158,13 @@ function showQuestionsAns1() {
 // QUESTION 2 
 
 function showQuestionsAns2() {
-    // resultAreaW.classList.add('hide');
     questionField.textContent = questions[1].title;
-    answerOne.textContent = questions[1].choices[0];
-    answerTwo.textContent = questions[1].choices[1];
-    answerThree.textContent = questions[1].choices[2];
-    answerFour.textContent = questions[1].choices[3];
 
     function checkAns1(){
         if (index != indexOfAns1){
-            // console.log(index);
-            // console.log(indexOfAns);
             resultAreaW.classList.remove('hide');
             resultAreaW.textContent = "Wrong!"
+            secondsLeft = secondsLeft -15
             console.log("wrong")
         } else {
             resultAreaW.classList.remove('hide');
@@ -168,8 +180,23 @@ function showQuestionsAns2() {
     
         console.log(index);
     };
+
+    var button5 = document.createElement("button");
+        button5.textContent = questions[1].choices[0];
+    var button6 = document.createElement("button");
+        button6.textContent = questions[1].choices[1];
+    var button7 = document.createElement("button");
+        button7.textContent = questions[1].choices[2];
+    var button8 = document.createElement("button");
+        button8.textContent = questions[1].choices[3];
+
+    questionField.append(button5);
+    questionField.append(button6);
+    questionField.append(button7);
+    questionField.append(button8);
+
     
-    answerOne.addEventListener("click", function(){
+    button5.addEventListener("click", function(){
         correctTwo(questions);
         indexOfAns1 = questions[1].choices.indexOf(questions[1].choices[0]);
         console.log(indexOfAns1);
@@ -177,7 +204,7 @@ function showQuestionsAns2() {
         showQuestionsAns3();
     });
     
-    answerTwo.addEventListener("click", function(){
+    button6.addEventListener("click", function(){
         correctTwo(questions);
         indexOfAns1 = questions[1].choices.indexOf(questions[1].choices[1]);
         console.log(indexOfAns1);
@@ -185,7 +212,7 @@ function showQuestionsAns2() {
         showQuestionsAns3();
     });
     
-    answerThree.addEventListener("click", function(){
+    button7.addEventListener("click", function(){
         correctTwo(questions);
         indexOfAns1 = questions[1].choices.indexOf(questions[1].choices[2]);
         console.log(indexOfAns1);
@@ -193,7 +220,7 @@ function showQuestionsAns2() {
         showQuestionsAns3();
     });
     
-    answerFour.addEventListener("click", function(){
+    button8.addEventListener("click", function(){
         correctTwo(questions);
         indexOfAns1 = questions[1].choices.indexOf(questions[1].choices[3]);
         console.log(indexOfAns1);
@@ -206,20 +233,13 @@ function showQuestionsAns2() {
 // // QUESTION 3 
 
 function showQuestionsAns3() {
-    // resultAreaW.classList.add('hide');
-    // resultAreaR.classList.add('hide');
     questionField.textContent = questions[2].title;
-    answerOne.textContent = questions[2].choices[0];
-    answerTwo.textContent = questions[2].choices[1];
-    answerThree.textContent = questions[2].choices[2];
-    answerFour.textContent = questions[2].choices[3];
 
     function checkAns2(){
         if (index != indexOfAns2){
-            // console.log(index);
-            // console.log(indexOfAns);
             resultAreaW.classList.remove('hide');
             resultAreaW.textContent = "Wrong!"
+            secondsLeft = secondsLeft -15
             console.log("wrong")
         } else {
             resultAreaW.classList.remove('hide');
@@ -235,8 +255,22 @@ function showQuestionsAns3() {
     
         console.log(index);
     };
+
+    var button9 = document.createElement("button");
+        button9.textContent = questions[2].choices[0];
+    var button10 = document.createElement("button");
+        button10.textContent = questions[2].choices[1];
+    var button11 = document.createElement("button");
+        button11.textContent = questions[2].choices[2];
+    var button12 = document.createElement("button");
+        button12.textContent = questions[2].choices[3];
+
+    questionField.appendChild(button9);
+    questionField.appendChild(button10);
+    questionField.appendChild(button11);
+    questionField.appendChild(button12);
     
-    answerOne.addEventListener("click", function(){
+    button9.addEventListener("click", function(){
         correctThree(questions);
         indexOfAns2 = questions[2].choices.indexOf(questions[2].choices[0]);
         console.log(indexOfAns2);
@@ -244,7 +278,7 @@ function showQuestionsAns3() {
         showQuestionsAns4();
     });
     
-    answerTwo.addEventListener("click", function(){
+    button10.addEventListener("click", function(){
         correctThree(questions);
         indexOfAns2 = questions[2].choices.indexOf(questions[2].choices[1]);
         console.log(indexOfAns2);
@@ -252,7 +286,7 @@ function showQuestionsAns3() {
         showQuestionsAns4();
     });
     
-    answerThree.addEventListener("click", function(){
+    button11.addEventListener("click", function(){
         correctThree(questions);
         indexOfAns2 = questions[2].choices.indexOf(questions[2].choices[2]);
         console.log(indexOfAns2);
@@ -260,7 +294,7 @@ function showQuestionsAns3() {
         showQuestionsAns4();
     });
     
-    answerFour.addEventListener("click", function(){
+    button12.addEventListener("click", function(){
         correctThree(questions);
         indexOfAns2 = questions[2].choices.indexOf(questions[2].choices[3]);
         console.log(indexOfAns2);
@@ -274,20 +308,13 @@ function showQuestionsAns3() {
 // // QUESTION 4 
 
 function showQuestionsAns4() {
-    // resultAreaW.classList.add('hide');
-    // resultAreaR.classList.add('hide');
     questionField.textContent = questions[3].title;
-    answerOne.textContent = questions[3].choices[0];
-    answerTwo.textContent = questions[3].choices[1];
-    answerThree.textContent = questions[3].choices[2];
-    answerFour.textContent = questions[3].choices[3];
 
     function checkAns3(){
         if (index != indexOfAns3){
-            // console.log(index);
-            // console.log(indexOfAns);
             resultAreaW.classList.remove('hide');
             resultAreaW.textContent = "Wrong!"
+            secondsLeft = secondsLeft -15
             console.log("wrong")
         } else {
             resultAreaW.classList.remove('hide');
@@ -303,8 +330,22 @@ function showQuestionsAns4() {
     
         console.log(index);
     };
+
+    var button13 = document.createElement("button");
+        button13.textContent = questions[3].choices[0];
+    var button14 = document.createElement("button");
+        button14.textContent = questions[3].choices[1];
+    var button15 = document.createElement("button");
+        button15.textContent = questions[3].choices[2];
+    var button16 = document.createElement("button");
+        button16.textContent = questions[3].choices[3];
+
+    questionField.appendChild(button13);
+    questionField.appendChild(button14);
+    questionField.appendChild(button15);
+    questionField.appendChild(button16);
     
-    answerOne.addEventListener("click", function(){
+    button13.addEventListener("click", function(){
         correctFour(questions);
         indexOfAns3 = questions[3].choices.indexOf(questions[3].choices[0]);
         console.log(indexOfAns3);
@@ -312,7 +353,7 @@ function showQuestionsAns4() {
         showQuestionsAns5();
     });
     
-    answerTwo.addEventListener("click", function(){
+    button14.addEventListener("click", function(){
         correctFour(questions);
         indexOfAns3 = questions[3].choices.indexOf(questions[3].choices[1]);
         console.log(indexOfAns3);
@@ -320,7 +361,7 @@ function showQuestionsAns4() {
         showQuestionsAns5();
     });
     
-    answerThree.addEventListener("click", function(){
+    button15.addEventListener("click", function(){
         correctFour(questions);
         indexOfAns3 = questions[3].choices.indexOf(questions[3].choices[2]);
         console.log(indexOfAns3);
@@ -328,7 +369,7 @@ function showQuestionsAns4() {
         showQuestionsAns5();
     });
     
-    answerFour.addEventListener("click", function(){
+    button16.addEventListener("click", function(){
         correctFour(questions);
         indexOfAns3 = questions[3].choices.indexOf(questions[3].choices[3]);
         console.log(indexOfAns3);
@@ -341,21 +382,14 @@ function showQuestionsAns4() {
 // // QUESTION 5 
 
 function showQuestionsAns5() {
-    // resultAreaW.classList.add('hide');
-    // resultAreaR.classList.add('hide');
     questionField.textContent = questions[4].title;
-    answerOne.textContent = questions[4].choices[0];
-    answerTwo.textContent = questions[4].choices[1];
-    answerThree.textContent = questions[4].choices[2];
-    answerFour.textContent = questions[4].choices[3];
 
     function checkAns4(){
         if (index != indexOfAns4){
-            // console.log(index);
-            // console.log(indexOfAns);
             resultAreaW.classList.remove('hide');
             resultAreaW.textContent = "Wrong!"
             console.log("wrong")
+            secondsLeft = secondsLeft -15
         } else {
             resultAreaW.classList.remove('hide');
             resultAreaW.textContent = "Right!"
@@ -370,8 +404,22 @@ function showQuestionsAns5() {
     
         console.log(index);
     };
+
+    var button17 = document.createElement("button");
+        button17.textContent = questions[4].choices[0];
+    var button18 = document.createElement("button");
+        button18.textContent = questions[4].choices[1];
+    var button19 = document.createElement("button");
+        button19.textContent = questions[4].choices[2];
+    var button20 = document.createElement("button");
+        button20.textContent = questions[4].choices[3];
+
+    questionField.appendChild(button17);
+    questionField.appendChild(button18);
+    questionField.appendChild(button19);
+    questionField.appendChild(button20);
     
-    answerOne.addEventListener("click", function(){
+    button17.addEventListener("click", function(){
         correctFive(questions);
         indexOfAns4 = questions[4].choices.indexOf(questions[4].choices[0]);
         console.log(indexOfAns4);
@@ -379,7 +427,7 @@ function showQuestionsAns5() {
         yourScorePage();
     });
     
-    answerTwo.addEventListener("click", function(){
+    button18.addEventListener("click", function(){
         correctFive(questions);
         indexOfAns4 = questions[4].choices.indexOf(questions[4].choices[1]);
         console.log(indexOfAns4);
@@ -387,7 +435,7 @@ function showQuestionsAns5() {
         yourScorePage();
     });
     
-    answerThree.addEventListener("click", function(){
+    button19.addEventListener("click", function(){
         correctFive(questions);
         indexOfAns4 = questions[4].choices.indexOf(questions[4].choices[2]);
         console.log(indexOfAns4);
@@ -395,7 +443,7 @@ function showQuestionsAns5() {
         yourScorePage();
     });
     
-    answerFour.addEventListener("click", function(){
+    button20.addEventListener("click", function(){
         correctFive(questions);
         indexOfAns4 = questions[4].choices.indexOf(questions[4].choices[3]);
         console.log(indexOfAns4);
@@ -404,18 +452,22 @@ function showQuestionsAns5() {
     });
 };
 
+
 function yourScorePage() {
+    clearInterval(timerInterval);
     userResults.classList.remove('hide');
     questionsPage.classList.add('hide');
 };
 
-
+var currentUserScore
 
 saveInitials.addEventListener("click", function (event) {
     event.preventDefault();
     var userName = document.querySelector("#name-win").value;
+    currentUserScore = saveTimeEnd;
     
-    localStorage.setItem('winner', userName);
+    localStorage.setItem('winner', JSON.stringify(userName));
+    localStorage.setItem('winner-score', currentUserScore);
 
     userResults.classList.add('hide');
     highScoresPage.classList.remove('hide');
@@ -424,11 +476,13 @@ saveInitials.addEventListener("click", function (event) {
 
 function scoreBoard (){
     console.log(localStorage.getItem('winner'))
-    userNameSpan.textContent = localStorage.getItem('winner');
+    userNameSpan.textContent = localStorage.getItem('winner') +" - "+ localStorage.getItem('winner-score');
 };
 
 
 restart.addEventListener("click", function () {
+    secondsLeft = 0;
+    timerLocation.textContent = "";
     highScoresPage.classList.add('hide');
     startingPage.classList.remove('hide');
 });

@@ -1,23 +1,23 @@
-
-function start() {
-    var secondsLeft = 75
-
-
-
-    setInterval(function () {getSecondsLeft(secondsLeft)}, 1000)
+// NOTES - PLEASE DISREGARD 
+// function start() {
+//     var secondsLeft = 75
 
 
-    function getSecondsLeft(seconds) {
-        secondsLeft = seconds-1
 
-        if(secondsLeft === 0){console.log('End Game')}
-
-        return secondsLeft  
-
-    }
+//     setInterval(function () {getSecondsLeft(secondsLeft)}, 1000)
 
 
-}
+//     function getSecondsLeft(seconds) {
+//         secondsLeft = seconds-1
+
+//         if(secondsLeft === 0){console.log('End Game')}
+
+//         return secondsLeft  
+
+//     }
+
+
+// }
 
 
 // function getQuestion(questions){
@@ -112,4 +112,24 @@ function start() {
 //         console.log("Im working?");
 //         yourScorePage();
 //     }
+// };
+
+// attempt 3 
+
+// var secondsLeft = 50
+
+// function startTimer() {
+//     var timerInterval = setInterval(function () {
+//         secondsLeft--;
+//         timerLocation.textContent = "Time Remaining:" + secondsLeft;
+
+//         if (answer = true){
+//             secondsLeft = secondsLeft-15;
+            
+//         }else if (secondsLeft === 0) {
+//             clearInterval(timerInterval);
+//             yourScorePage();
+//             console.log("Game Over");
+//         }
+//     }, 1000);
 // };

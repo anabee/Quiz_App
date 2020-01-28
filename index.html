@@ -6,20 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Quiz Application</title>
 
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> 
     <link rel="stylesheet" href="style.css">
+
+    <script src="https://kit.fontawesome.com/0b5f1c4663.js" crossorigin="anonymous"></script>
 
 </head>
 <body>
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4 top-style">
                 Highest Score: 
             </div>
-            <div class="col-md-8">
-                <div class="countdown-field" id="txt">Time Remaining:</div>
+            <div class="col-md-8 top-style">
+                <div>Time Remaining:
+                        <div class="countdown-field" id="txt"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -30,32 +36,24 @@
                 <h1>Coding Quiz Challange</h1>
             </div>
             <div class="col-md-12">
-                <p>This is a quiz, hopefully I can get it to work!</p>
+                <p>Try to answer the following code related questions before time runs out! There is a 15 second deduction for wrong answers.</p>
+                <br>
+                <p>Good Luck!</p>
             </div>
             <div class="col-md-12">
-                <button type="button" class="btn btn-info startBtn">Start</button>
+                <button type="button" class="btn btn-info btn-lg startBtn">Start</button>
             </div>
         </div>
 
         <div class="row questions-container hide">
+            <br>
             <div class="col-md-12">
+                <br>
+                    <div class="col-md-12">
+                        </div>
                 <h3 class="question">Question:</h3>
             </div>
             <div class="col-md-12">
-                <ul>
-                    <li>
-                        <button type="button" class="btn btn-info buttonOne" value="0">a.</button>
-                    </li>
-                    <li>
-                        <button type="button" class="btn btn-info buttonTwo" value="1">b.</button>
-                    </li>
-                    <li>
-                        <button type="button" class="btn btn-info buttonThree" value="2">c.</button>
-                    </li>
-                    <li>
-                        <button type="button" class="btn btn-info buttonFour" value="3">d.</button>
-                    </li>
-                </ul>
             </div>
             <div class="col-md-12">
                 <div class="wrong-display hide"></div>
@@ -66,35 +64,48 @@
         <div class="row hide user-scores">
             <div class="col-md-12">
                 All Done!
+                <div>
+                    <span style="font-size: 2em; color:#17a2b8; text-align: center;">
+                    <i class="far fa-grin-hearts"></i>
+                    </span>
+                </div>
             </div>
             <div class="col-md-12">
-                Your score is:   
+                Your score is:
+                <div class="final-score"></div>
             </div>
             <div class="col-md-12">
+                <br>
                 <label>Enter your Intials:</label>
                 <input type="text" id="name-win">
-                <button type="button" class="btn btn-info addingScoreBtn">Submit</button>
+                <button type="button" class="btn btn-info btn-lg addingScoreBtn">Submit</button>
             </div>
         </div>
 
         <div class="row hide high-scores">
             <div class="col-md-12">
-                High Scores: 
+                High Score: 
+                <div>
+                    <span style="font-size: 2em; color:#17a2b8; text-align: center;">
+                    <i class="fas fa-medal"></i></i>
+                    </span>
+                </div>
             </div>
+            <br>
             <div class="col-md-12">
                 <h2>Top Players:</h2>
                 <div class="winner-info"></div>
             </div>
             <div class="col-md-12">
-                <button type="button" class="btn btn-info restartBtn">Go Back</button>
-                <button type="button" class="btn btn-info clearBtn clearAll">Clearn High Scores</button>
+                <br>
+                <button type="button" class="btn btn-info btn-lg  restartBtn">Go Back</button>
+                <button type="button" class="btn btn-info btn-lg  clearBtn clearAll">Clear High Scores</button>
             </div>
         </div>
 
     </div>
     <script src="./questions.js"></script>
     <script src="./script.js"></script>
-    <!-- <script src="./quiz.js"></script> -->
     
 </body>
 </html>
