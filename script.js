@@ -459,25 +459,32 @@ function yourScorePage() {
     questionsPage.classList.add('hide');
 };
 
-var currentUserScore
+// var currentUserScore
+// var playerInfo
 
-saveInitials.addEventListener("click", function (event) {
-    event.preventDefault();
-    var userName = document.querySelector("#name-win").value;
-    currentUserScore = saveTimeEnd;
+// saveInitials.addEventListener("click", function (event) {
+//     event.preventDefault();
+//     var userName = document.querySelector("#name-win").value;
+//     currentUserScore = saveTimeEnd;
+
+//     playerInfo = [{userName,saveTimeEnd}];
+
+//     localStorage.setItem('userScore', JSON.stringify(playerInfo));
     
-    localStorage.setItem('winner', JSON.stringify(userName));
-    localStorage.setItem('winner-score', currentUserScore);
+//     // localStorage.setItem('winner', JSON.stringify(userName));
+//     // localStorage.setItem('winner-score', currentUserScore);
 
-    userResults.classList.add('hide');
-    highScoresPage.classList.remove('hide');
-    scoreBoard();
-});
+//     userResults.classList.add('hide');
+//     highScoresPage.classList.remove('hide');
+//     scoreBoard();
+// });
 
 function scoreBoard (){
     console.log(localStorage.getItem('winner'))
-    userNameSpan.textContent = localStorage.getItem('winner') +" - "+ localStorage.getItem('winner-score');
+    // userNameSpan.textContent = localStorage.getItem('winner') +" - "+ localStorage.getItem('winner-score');
+    userNameSpan.textContent = localStorage.getItem('completeList');
 };
+
 
 
 restart.addEventListener("click", function () {
