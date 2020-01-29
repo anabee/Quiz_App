@@ -13,23 +13,22 @@ var completeList = [];
 init();
 
 function renderAllPlayers() {
-    console.log('connected')
-    winList.innerHTML = "";
+    // winList.innerHTML = "";
 
     for (i = 0; i < allTimePlayers.length; i++) {
         completeList.push({
             allTimePlayers: allTimePlayers[i],
             allTimeScore: allTimeScore[i]
         })
-        //    completeList = allTimePlayers[i] + allTimeScore[i];
-        console.log(completeList)
-        var li = document.createElement("li");
-        li.textContent = completeList[0].allTimePlayers + completeList[0].allTimeScore;
+            console.log(completeList)
+            var li = document.createElement("li");
+        
+        li.textContent = completeList[i].allTimePlayers + completeList[i].allTimeScore;
         li.setAttribute("data-index", i);
-
+    
         winList.append(li);
-    }
-}
+        }
+    };
 
 function init() {
     var storedPlayers = JSON.parse(localStorage.getItem("completeList"));
