@@ -2,15 +2,15 @@ var winList = document.querySelector("#win-winslist");
 var userName = document.querySelector("#name-win");
 var saveInitials = document.querySelector(".addingScoreBtn");
 
-
+userNameSpan.textContent = localStorage.getItem('completeList');
 
 var allTimePlayers = [];
 var allTimeScore = [];
-var completeList = [];
+var completeList;
 
 
 
-init();
+// init();
 
 function renderAllPlayers() {
     // winList.innerHTML = "";
@@ -20,13 +20,14 @@ function renderAllPlayers() {
             allTimePlayers: allTimePlayers[i],
             allTimeScore: allTimeScore[i]
         })
-            console.log(completeList)
-            var li = document.createElement("li");
+        console.log(completeList)
+        //     console.log(completeList)
+        //     var li = document.createElement("div");
         
-        li.textContent = completeList[i].allTimePlayers + completeList[i].allTimeScore;
-        li.setAttribute("data-index", i);
+        // li.textContent = completeList[i].allTimePlayers + completeList[i].allTimeScore;
+        // li.setAttribute("data-index", i);
     
-        winList.append(li);
+        winList.textContent = completeList[i].allTimePlayers + completeList[i].allTimeScore
         }
     };
 
@@ -34,15 +35,31 @@ function init() {
     var storedPlayers = JSON.parse(localStorage.getItem("completeList"));
 
     if (storedPlayers !== null) {
-        // completeList = storedPlayers;
+        completeList = storedPlayers;
     }
 
-    renderAllPlayers();
+    // renderAllPlayers();
 }
 
 function allStoredPlayersLIst() {
-    localStorage.setItem("completeList", JSON.stringify(completeList));
+    completeList = [];
+    for (i = 0; i < allTimePlayers.length; i++) {
+        completeList.push({
+            allTimePlayers: allTimePlayers[i],
+            allTimeScore: allTimeScore[i]
+        })
+        console.log(completeList)
+            console.log(completeList)
+            var li = document.createElement("div");
+        
+        li.textContent = completeList[i].allTimePlayers + completeList[i].allTimeScore;
+        li.setAttribute("data-index", i);
+    
+        winList.textContent = completeList[i].allTimePlayers + completeList[i].allTimeScore
+        }
 
+    localStorage.setItem("completeList", JSON.stringify(completeList));
+console.log(completeList)
 }
 
 saveInitials.addEventListener("click", function (event) {
@@ -51,7 +68,10 @@ saveInitials.addEventListener("click", function (event) {
     allTimePlayers.push(userName.value.trim());
     allTimeScore.push(saveTimeEnd);
 
-
+    
+    
+    
+    init();
     allStoredPlayersLIst();
     renderAllPlayers();
 

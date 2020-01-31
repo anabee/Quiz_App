@@ -482,7 +482,7 @@ function yourScorePage() {
 function scoreBoard (){
     // console.log(localStorage.getItem('winner'))
     // userNameSpan.textContent = localStorage.getItem('winner') +" - "+ localStorage.getItem('winner-score');
-    userNameSpan.textContent = localStorage.getItem('completeList');
+    // userNameSpan.textContent = localStorage.getItem('completeList');
 };
 
 
